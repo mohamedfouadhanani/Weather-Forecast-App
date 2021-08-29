@@ -1,6 +1,6 @@
 // COMPONENTS
 import { useTheme } from '../../../../../contexts/Theme';
-import HourlyForecast from './HourlyForecast';
+import HourlyForecast from './HourlyForecast/Index';
 import Temperature from './Temperature';
 import WindHumidityPercip from './WindHumidityPercip';
 

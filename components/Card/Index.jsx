@@ -1,5 +1,5 @@
-import TabsBar from './TabsBar';
-import Content from './Content';
+import TabsBar from './TabsBar/Index';
+import Content from './Content/Index';
 import { useTheme } from '../../contexts/Theme';
 
 let Card = () => {

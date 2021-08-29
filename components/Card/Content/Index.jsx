@@ -1,14 +1,10 @@
-import { useCoordinates } from '../../../contexts/Coordinates';
 import { useTab } from '../../../contexts/Tab';
-import { useTheme } from '../../../contexts/Theme';
-import Info from './Info';
-import Settings from './Settings';
-import FAQ from './FAQ';
+import Info from './Info/index';
+import Settings from './Settings/Index';
+import FAQ from './FAQ/Index';
 
 let Content = () => {
-	let { coordinates } = useCoordinates();
 	let { tab, TABS } = useTab();
-	let { isDarkTheme } = useTheme();
 
 	return (
 		<div className="flex-1 w-5/6">

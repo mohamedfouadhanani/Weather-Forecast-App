@@ -1,13 +1,12 @@
 import { createClient } from 'contentful';
 import axios from 'axios';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useEffect } from 'react';
 
 // COMPONENTS
 import Alert from '../components/Alert/Index';
-import Announcements from '../components/Announcements/Index';
+// import Announcements from '../components/Announcements/Index';
 import Layer from '../components/Layer';
 
 // CONTEXTS
@@ -27,7 +26,7 @@ let Map = dynamic(() => import('../components/Map'), {
 	ssr: false,
 });
 
-let Card = dynamic(() => import('../components/Card'), {
+let Card = dynamic(() => import('../components/Card/Index'), {
 	ssr: false,
 });
 
