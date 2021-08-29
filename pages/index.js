@@ -16,7 +16,7 @@ import { useWeather } from '../contexts/Weather';
 import { useFAQs } from '../contexts/FAQ';
 
 // CONSTANTS
-import constants from '../constants';
+import constants from '../public/constants';
 import Footer from '../components/Footer';
 import { useAlerts } from '../contexts/Alerts';
 

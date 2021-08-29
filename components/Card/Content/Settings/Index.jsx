@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import constants from '../../../../constants';
+import constants from '../../../../public/constants';
 import { useAlerts } from '../../../../contexts/Alerts';
 import { useSettings } from '../../../../contexts/Settings';
 import { useTheme } from '../../../../contexts/Theme';

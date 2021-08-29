@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import constants from '../constants';
+import constants from '../public/constants';
 
 export let settingsContext = createContext(null);
 
