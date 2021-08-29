@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { useEffect } from 'react';
-import ContextsProvider from '../contexts';
+import ContextsProvider from '../contexts/Index';
 import * as gtag from '../lib/gtag';
 
 import '../styles/global.css';
