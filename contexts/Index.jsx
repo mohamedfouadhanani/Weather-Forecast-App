@@ -4,7 +4,6 @@ import TabProvider from './Tab';
 import CoordinatesProvider from './Coordinates';
 import SettingsProvider from './Settings';
 import WeatherProvider from './Weather';
-import AlertProvider from './Alert';
 import FAQProvider from './FAQ';
 import AlertsProvider from './Alerts';
 
@@ -19,11 +18,9 @@ let ContextsProvider = ({ children }) => {
 				<CoordinatesProvider>
 					<SettingsProvider>
 						<WeatherProvider>
-							<AlertProvider>
-								<FAQProvider>
-									<AlertsProvider>{children}</AlertsProvider>
-								</FAQProvider>
-							</AlertProvider>
+							<FAQProvider>
+								<AlertsProvider>{children}</AlertsProvider>
+							</FAQProvider>
 						</WeatherProvider>
 					</SettingsProvider>
 				</CoordinatesProvider>
