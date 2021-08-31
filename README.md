@@ -19,9 +19,9 @@ Weather Forecast App uses the [weatherapi.com](https://weatherapi.com/) free Wea
 ### Future imporvements
 
 - [x] redesigning the 404 Page.
-- [ ] Use HeadlessUI.
+- [x] Find a new Icon.
 - [ ] Dark theme Map Tiles.
-- [ ] Find a new Favicon.
+- [ ] Use HeadlessUI.
 - [ ] Display Announcements.
-- [ ] Monetize with Adsense.
 - [ ] Turn to a PWA (Progressive Web App).
+- [ ] Monetize with Adsense.
