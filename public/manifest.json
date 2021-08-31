@@ -1,0 +1,22 @@
+{
+	"short_name": "WFA",
+	"name": "Weather Forecast App",
+	"description": "...",
+	"icons": [
+		{
+			"src": "/icons/sunclouds192x192.svg",
+			"type": "image/svg+xml",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/icons/sunclouds512x512.svg",
+			"type": "image/svg+xml",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"display": "fullscreen",
+	"scope": "/",
+	"background_color": "#FFFFFF",
+	"theme_color": "#000000"
+}
