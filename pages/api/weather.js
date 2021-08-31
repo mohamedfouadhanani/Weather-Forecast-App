@@ -3,36 +3,40 @@ import axios from 'axios';
 let key = process.env.WEATHER_API_KEY;
 let revGeoKey = process.env.REV_GEO_API_KEY;
 
+let language = {
+	EN: 'en-US',
+	FR: 'fr-FR',
+	ES: 'es-ES',
+};
+
 export default async function handler(req, res) {
 	let { latitude, longitude, language } = req.body;
 
-	let addressURL = `https://revgeocode.search.hereapi.com/v1/revgeocode?lang=en-US&at=${latitude}%2C${longitude}&apikey=${revGeoKey}`;
+	let addressURL = `https://revgeocode.search.hereapi.com/v1/revgeocode?lang=${language}&at=${latitude}%2C${longitude}&apikey=${revGeoKey}`;
 
 	let weatherURL = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${latitude},${longitude}&days=7&aqi=no&alerts=no&lang=${language}`;
 
+	let data = null;
 	try {
 		let addressResponse = await axios.get(addressURL);
 
-		let location = `${addressResponse.data.items[0].address.county}, ${addressResponse.data.items[0].address.countryCode}`;
+		let county = addressResponse.data.items[0].address.county;
+		let countryCode = addressResponse.data.items[0].address.countryCode;
+		// let state = addressResponse.data.items[0].address.state;
+		// let location = `${county}, ${state}, ${countryCode}`;
+
+		let location = `${county}, ${countryCode}`;
 
 		let weatherResponse = await axios.get(weatherURL);
 
-		let countryName = weatherResponse.data.location.country;
-
-		let countryURL = `https://restcountries.eu/rest/v2/name/${countryName}`;
-
-		let countryResponse = await axios.get(countryURL);
-
-		let data = reShape({
+		data = reShape({
 			location,
 			weather: weatherResponse.data,
-			country: countryResponse.data[0],
 		});
-
-		res.json(data);
 	} catch (error) {
-		console.log(error.message);
+		console.log(error);
 	}
+	res.json(data);
 }
 
 let reShape = ({ location, weather }) => {

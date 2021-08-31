@@ -47,8 +47,13 @@ let Index = ({ FAQList, announcementsList }) => {
 					language: settings.LANGUAGE.abreviation,
 				})
 				.then(({ data }) => {
-					setWeatherList(data);
-					setWeather(data[0]);
+					if (data) {
+						setWeatherList(data);
+						setWeather(data[0]);
+					} else {
+						setWeatherList(null);
+						setWeather(null);
+					}
 				})
 				.catch(error => {
 					setWeatherList(null);

@@ -15,22 +15,23 @@ let WeekForecast = () => {
 			hideScrollbars={true}
 			className="p-2 h-2/5 flex space-x-2 w-full"
 		>
-			{weatherList.map((weatherItem, index) => (
-				<WeekForecastCard
-					highest={weatherItem[units].highest}
-					lowest={weatherItem[units].lowest}
-					description={weatherItem.description}
-					date={weatherItem.date}
-					key={index}
-					isSelected={weatherItem.date === weather.date}
-					onClick={date => {
-						let selectedWeather = weatherList.find(
-							weather => weather.date === date
-						);
-						setWeather(selectedWeather);
-					}}
-				/>
-			))}
+			{weatherList &&
+				weatherList.map((weatherItem, index) => (
+					<WeekForecastCard
+						highest={weatherItem[units].highest}
+						lowest={weatherItem[units].lowest}
+						description={weatherItem.description}
+						date={weatherItem.date}
+						key={index}
+						isSelected={weatherItem.date === weather.date}
+						onClick={date => {
+							let selectedWeather = weatherList.find(
+								weather => weather.date === date
+							);
+							setWeather(selectedWeather);
+						}}
+					/>
+				))}
 		</ScrollContainer>
 	);
 };
