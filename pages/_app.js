@@ -22,7 +22,11 @@ let MyApp = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
-				<link rel="shortcut icon" href="/ico.ico" />
+				<link
+					rel="shortcut icon"
+					href="/icons/sunclouds.svg"
+					type="image/svg+xml"
+				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<meta charSet="UTF-8" />
 				<meta name="author" content="@its_fouad_hanani" />
