@@ -18,7 +18,7 @@ Weather Forecast App uses the [weatherapi.com](https://weatherapi.com/) free Wea
 
 ### Future imporvements
 
-- [x] redesigning the 404 Page.
+- [x] Redesigning the 404 Page.
 - [x] Find a new Icon.
 - [ ] Alert Offline.
 - [ ] Dark theme Map Tiles.
