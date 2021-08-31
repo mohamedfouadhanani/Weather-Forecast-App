@@ -1,7 +1,10 @@
 {
 	"short_name": "WFA",
 	"name": "Weather Forecast App",
-	"description": "...",
+	"description": "Weather Forecast App is a Web application, Progressive Web App (PWA) that helps people check the weather in any place on earth.",
+	"start_url": "/",
+	"display": "fullscreen",
+	"orientation": "portrait",
 	"icons": [
 		{
 			"src": "/icons/sunclouds192x192.svg",
@@ -13,10 +16,5 @@
 			"type": "image/svg+xml",
 			"sizes": "512x512"
 		}
-	],
-	"start_url": "/",
-	"display": "fullscreen",
-	"scope": "/",
-	"background_color": "#FFFFFF",
-	"theme_color": "#000000"
+	]
 }
