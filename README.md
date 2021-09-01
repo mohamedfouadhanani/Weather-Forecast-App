@@ -23,6 +23,5 @@ Weather Forecast App uses the [weatherapi.com](https://weatherapi.com/) free Wea
 - [x] Turn to a PWA (Progressive Web App).
 - [x] Alert Offline.
 - [x] Use HeadlessUI.
-- [ ] Dark theme Map Tiles.
 - [ ] Display Announcements.
 - [ ] Monetize with Adsense.

@@ -15,7 +15,7 @@ let Map = () => {
 
 	return (
 		<MapContainer
-			center={[0, 0]}
+			center={[30, 0]}
 			zoom={3}
 			scrollWheelZoom={true}
 			className="h-screen w-screen"
