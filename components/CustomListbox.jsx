@@ -1,6 +1,7 @@
 import { Listbox, Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
+import { useSettings } from '../contexts/Settings';
 import { useTheme } from '../contexts/Theme';
 
 export default function CustomListbox({
@@ -8,10 +9,15 @@ export default function CustomListbox({
 	list,
 	getSelectedItemName,
 	onChange,
-	unitialSelection,
+	propertyName,
 }) {
-	const [selected, setSelected] = useState(unitialSelection);
+	let { settings } = useSettings();
+	let [selected, setSelected] = useState(settings[propertyName]);
 	let { isDarkTheme } = useTheme();
+
+	useEffect(() => {
+		setSelected(settings[propertyName]);
+	}, [settings[propertyName]]);
 
 	return (
 		<Listbox

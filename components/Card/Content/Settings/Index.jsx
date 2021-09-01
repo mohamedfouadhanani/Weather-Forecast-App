@@ -71,7 +71,7 @@ let Settings = () => {
 					}}
 					list={Object.values(LANGUAGES)}
 					getSelectedItemName={selected => selected.name}
-					unitialSelection={settings.LANGUAGE}
+					propertyName="LANGUAGE"
 				/>
 
 				<CustomListbox
@@ -84,7 +84,7 @@ let Settings = () => {
 					}}
 					list={Object.values(UNITS)}
 					getSelectedItemName={selected => selected.name}
-					unitialSelection={settings.UNITS}
+					propertyName="UNITS"
 				/>
 
 				<CustomListbox
@@ -97,7 +97,7 @@ let Settings = () => {
 					}}
 					list={Object.values(TIME)}
 					getSelectedItemName={selected => selected.name}
-					unitialSelection={settings.TIME}
+					propertyName="TIME"
 				/>
 			</div>
 
