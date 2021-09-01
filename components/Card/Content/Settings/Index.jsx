@@ -3,7 +3,8 @@ import constants from '../../../../public/constants';
 import { useAlerts } from '../../../../contexts/Alerts';
 import { useSettings } from '../../../../contexts/Settings';
 import { useTheme } from '../../../../contexts/Theme';
-import CustomSelect from './CustomSelect';
+// import CustomSelect from './CustomSelect';
+import CustomListbox from '../../../CustomListbox';
 
 let { LANGUAGES, UNITS, TIME } = constants;
 
@@ -14,10 +15,43 @@ let Settings = () => {
 
 	let handleSave = settings => {
 		localStorage.setItem('WEATHER_FORECAST_APP', JSON.stringify(settings));
+		alerts = [
+			...alerts,
+			{
+				type: 'success',
+				message: settings.LANGUAGE.save,
+			},
+		];
+		setAlerts(alerts);
 	};
 
 	let handleReset = () => {
-		localStorage.removeItem('WEATHER_FORECAST_APP');
+		let localStorageData = localStorage.getItem('WEATHER_FORECAST_APP');
+		if (localStorageData) {
+			localStorage.removeItem('WEATHER_FORECAST_APP');
+			setSettings({
+				LANGUAGE: LANGUAGES.EN,
+				UNITS: UNITS.METRICS,
+				TIME: TIME[24],
+			});
+			alerts = [
+				...alerts,
+				{
+					type: 'success',
+					message: settings.LANGUAGE.reset,
+				},
+			];
+			setAlerts(alerts);
+		} else {
+			alerts = [
+				...alerts,
+				{
+					type: 'error',
+					message: settings.LANGUAGE.resetError,
+				},
+			];
+			setAlerts(alerts);
+		}
 	};
 
 	return (
@@ -27,66 +61,44 @@ let Settings = () => {
 			}`}
 		>
 			<div className="space-y-4">
-				<CustomSelect
-					value={settings.LANGUAGE.abreviation}
+				<CustomListbox
 					label={settings.LANGUAGE.language}
-					onChange={e => {
-						let selectedLanguageAbreviation = e.target.value;
-						let selectedLanguage = LANGUAGES[selectedLanguageAbreviation];
+					onChange={selected => {
 						setSettings(prevState => ({
 							...prevState,
-							LANGUAGE: selectedLanguage,
+							LANGUAGE: selected,
 						}));
 					}}
-				>
-					{Object.keys(LANGUAGES).map(language => (
-						<option key={language} value={LANGUAGES[language].abreviation}>
-							{LANGUAGES[language].name}
-						</option>
-					))}
-				</CustomSelect>
-				{/*  */}
-				<CustomSelect
-					value={settings.UNITS.abreviation}
+					list={Object.values(LANGUAGES)}
+					getSelectedItemName={selected => selected.name}
+					unitialSelection={settings.LANGUAGE}
+				/>
+
+				<CustomListbox
 					label={settings.LANGUAGE.units}
-					onChange={e => {
-						let selectedUnitAbreviation = e.target.value;
-						let selectedUnits = Object.values(UNITS).find(
-							unit => unit.abreviation === selectedUnitAbreviation
-						);
+					onChange={selected => {
 						setSettings(prevState => ({
 							...prevState,
-							UNITS: selectedUnits,
+							UNITS: selected,
 						}));
 					}}
-				>
-					{Object.keys(UNITS).map(UNIT => {
-						return (
-							<option key={UNIT} value={UNITS[UNIT].abreviation}>
-								{UNITS[UNIT].name}
-							</option>
-						);
-					})}
-				</CustomSelect>
-				{/*  */}
-				<CustomSelect
-					value={settings.TIME.abreviation}
+					list={Object.values(UNITS)}
+					getSelectedItemName={selected => selected.name}
+					unitialSelection={settings.UNITS}
+				/>
+
+				<CustomListbox
 					label={settings.LANGUAGE.timeFormat}
-					onChange={e => {
-						let selectedTimeAbreviation = e.target.value;
-						let selectedTime = TIME[selectedTimeAbreviation];
+					onChange={selected => {
 						setSettings(prevState => ({
 							...prevState,
-							TIME: selectedTime,
+							TIME: selected,
 						}));
 					}}
-				>
-					{Object.keys(TIME).map(time => (
-						<option key={time} value={time}>
-							{TIME[time].name}
-						</option>
-					))}
-				</CustomSelect>
+					list={Object.values(TIME)}
+					getSelectedItemName={selected => selected.name}
+					unitialSelection={settings.TIME}
+				/>
 			</div>
 
 			<div className="flex items-center w-full">
@@ -96,14 +108,6 @@ let Settings = () => {
 					}`}
 					onClick={() => {
 						handleSave(settings);
-						alerts = [
-							...alerts,
-							{
-								type: 'success',
-								message: settings.LANGUAGE.save,
-							},
-						];
-						setAlerts(alerts);
 					}}
 				>
 					{settings.LANGUAGE.save}
@@ -111,19 +115,6 @@ let Settings = () => {
 				<button
 					onClick={() => {
 						handleReset();
-						setSettings({
-							LANGUAGE: LANGUAGES.EN,
-							UNITS: UNITS.METRICS,
-							TIME: TIME[24],
-						});
-						alerts = [
-							...alerts,
-							{
-								type: 'success',
-								message: settings.LANGUAGE.reset,
-							},
-						];
-						setAlerts(alerts);
 					}}
 					className={`block w-3/12 h-full rounded-r-md transition-all flex items-center justify-center ${
 						isDarkTheme

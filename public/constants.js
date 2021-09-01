@@ -1024,6 +1024,7 @@ let constants = {
 			goBack: 'Go Back.',
 			notFoundMessage: 'Page not found.',
 			reset: 'Settings Reset.',
+			resetError: 'No default settings.',
 		},
 		FR: {
 			name: 'Français',
@@ -1050,6 +1051,7 @@ let constants = {
 			goBack: 'Retourner.',
 			notFoundMessage: 'Page non trouvée.',
 			reset: 'Paramètres Réinitialisés.',
+			resetError: 'Pas de paramètres par défaut.',
 		},
 		ES: {
 			name: 'Español',
@@ -1076,6 +1078,7 @@ let constants = {
 			goBack: 'Regresa.',
 			notFoundMessage: 'Página no encontrada.',
 			reset: 'Reiniciar la Configuracion.',
+			resetError: 'Sin configuración predeterminada.',
 		},
 	},
 
