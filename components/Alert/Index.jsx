@@ -6,7 +6,7 @@ import { useAlerts } from '../../contexts/Alerts';
 let Alert = ({ alert }) => {
 	let [isShowing, setIsShowing] = useState(true);
 	let { alerts, setAlerts } = useAlerts();
-	let { type, message } = alert;
+	let { id, type, message } = alert;
 
 	let components = {
 		ERROR: {
@@ -35,20 +35,26 @@ let Alert = ({ alert }) => {
 	type = type.toUpperCase();
 
 	useEffect(() => {
+		let timerTwo;
 		let timer = setTimeout(() => {
 			setIsShowing(false);
-			let timer = setTimeout(() => {
-				let newAlert = alerts.filter(
-					alert => alert.type !== type && alert.message !== message
-				);
+
+			timerTwo = setTimeout(() => {
+				let newAlert = alerts.filter(alert => alert.id !== id);
+
 				setAlerts(newAlert);
-			}, 1000);
-			clearTimeout(timer);
+			}, 350);
 		}, 5000);
+
 		return () => {
 			clearTimeout(timer);
+			clearTimeout(timerTwo);
 		};
 	}, []);
+
+	useEffect(() => {
+		console.log(alerts);
+	}, [alerts]);
 
 	return (
 		<Transition
@@ -72,13 +78,10 @@ let Alert = ({ alert }) => {
 					<button
 						onClick={() => {
 							setIsShowing(false);
-							let timer = setTimeout(() => {
-								let newAlert = alerts.filter(
-									alert => alert.type !== type && alert.message !== message
-								);
-								setAlerts(newAlert);
-							}, 1000);
-							clearTimeout(timer);
+
+							let newAlert = alerts.filter(alert => alert.id !== id);
+
+							setAlerts(newAlert);
 						}}
 						className={`${components[type].className.dangerAlertBtn} hover:text-gray-200 p-2 rounded-md transition-all`}
 					>

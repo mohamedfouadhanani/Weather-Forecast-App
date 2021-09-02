@@ -18,6 +18,7 @@ let Settings = () => {
 		alerts = [
 			...alerts,
 			{
+				id: parseInt(Math.random() * 1000),
 				type: 'success',
 				message: settings.LANGUAGE.save,
 			},
@@ -37,6 +38,7 @@ let Settings = () => {
 			alerts = [
 				...alerts,
 				{
+					id: parseInt(Math.random() * 1000),
 					type: 'success',
 					message: settings.LANGUAGE.reset,
 				},
@@ -46,6 +48,7 @@ let Settings = () => {
 			alerts = [
 				...alerts,
 				{
+					id: parseInt(Math.random() * 1000),
 					type: 'error',
 					message: settings.LANGUAGE.resetError,
 				},
@@ -116,7 +119,7 @@ let Settings = () => {
 					onClick={() => {
 						handleReset();
 					}}
-					className={`block w-3/12 h-full rounded-r-md transition-all flex items-center justify-center ${
+					className={`w-3/12 h-full rounded-r-md transition-all flex items-center justify-center ${
 						isDarkTheme
 							? darkThemeResetButtonClassName
 							: lightThemeResetButtonClassName
