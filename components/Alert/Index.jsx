@@ -1,8 +1,10 @@
+import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import { useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useAlerts } from '../../contexts/Alerts';
 
 let Alert = ({ alert }) => {
+	let [isShowing, setIsShowing] = useState(true);
 	let { alerts, setAlerts } = useAlerts();
 	let { type, message } = alert;
 
@@ -34,10 +36,14 @@ let Alert = ({ alert }) => {
 
 	useEffect(() => {
 		let timer = setTimeout(() => {
-			let newAlert = alerts.filter(
-				alert => alert.type !== type && alert.message !== message
-			);
-			setAlerts(newAlert);
+			setIsShowing(false);
+			let timer = setTimeout(() => {
+				let newAlert = alerts.filter(
+					alert => alert.type !== type && alert.message !== message
+				);
+				setAlerts(newAlert);
+			}, 1000);
+			clearTimeout(timer);
 		}, 5000);
 		return () => {
 			clearTimeout(timer);
@@ -45,26 +51,42 @@ let Alert = ({ alert }) => {
 	}, []);
 
 	return (
-		<div
-			className={`${components[type].className.dangerAlertWrapper} w-full h-full text-white flex items-center overflow-y-auto pl-4 pr-2 rounded-md ring-1`}
+		<Transition
+			as={Fragment}
+			enter="transition transform duration-300 ease-out"
+			enterFrom="-translate-x-4 opacity-0"
+			enterTo="translate-x-0 opacity-100"
+			leave="transition transform duration-300 ease-in"
+			leaveFrom="opacity-100"
+			leaveTo="opacity-0"
+			show={isShowing}
+			appear={true}
 		>
-			<div className="flex-1 h-full flex flex-col justify-center">
-				<span className="text-xs">{message}</span>
+			<div
+				className={`${components[type].className.dangerAlertWrapper} w-full h-full text-white flex items-center overflow-y-auto pl-4 pr-2 rounded-md ring-1`}
+			>
+				<div className="flex-1 h-full flex flex-col justify-center">
+					<span className="text-xs">{message}</span>
+				</div>
+				<div>
+					<button
+						onClick={() => {
+							setIsShowing(false);
+							let timer = setTimeout(() => {
+								let newAlert = alerts.filter(
+									alert => alert.type !== type && alert.message !== message
+								);
+								setAlerts(newAlert);
+							}, 1000);
+							clearTimeout(timer);
+						}}
+						className={`${components[type].className.dangerAlertBtn} hover:text-gray-200 p-2 rounded-md transition-all`}
+					>
+						<Icon className="h-4 w-4" icon="heroicons-solid:x" />
+					</button>
+				</div>
 			</div>
-			<div>
-				<button
-					onClick={() => {
-						let newAlert = alerts.filter(
-							alert => alert.type !== type && alert.message !== message
-						);
-						setAlerts(newAlert);
-					}}
-					className={`${components[type].className.dangerAlertBtn} hover:text-gray-200 p-2 rounded-md transition-all`}
-				>
-					<Icon className="h-4 w-4" icon="heroicons-solid:x" />
-				</button>
-			</div>
-		</div>
+		</Transition>
 	);
 };
 
