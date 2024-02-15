@@ -25,3 +25,14 @@ Weather Forecast App uses the [weatherapi.com](https://weatherapi.com/) free Wea
 - [x] Use HeadlessUI.
 - [ ] Display Announcements.
 - [ ] Monetize with Adsense.
+
+### Screenshots
+
+**Initial UI**
+![Initial UI](README/initial.png)
+
+**Light Mode**
+![Light Mode](README/light%20mode.png)
+
+**dark Mode**
+![dark Mode](README/dark%20mode.png)
